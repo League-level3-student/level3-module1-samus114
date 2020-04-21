@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class _02_GuestBook implements ActionListener{
@@ -15,22 +16,35 @@ public class _02_GuestBook implements ActionListener{
 	JButton button2 = new JButton("View Names");
 	ArrayList<String> strings;
 	public static void main(String[] args) {
-		
+		_02_GuestBook guest = new _02_GuestBook(); 
+		guest.start();
 	}
 	_02_GuestBook() {
-		strings = new ArrayList<String>("Bob Banders", "Sandy Summers", "Greg Ganders", "Donny Doners");
-		strings.add()
+		strings = new ArrayList<String>();
+		strings.add("Bob Banders");
+		strings.add("Sandy Summers");
+		strings.add("Greg Ganders");
+		strings.add("Donny Doners");
 	}
 	void start() {
 		frame.add(panel);	
+		frame.setVisible(true);
 		button.addActionListener(this);
 		button2.addActionListener(this);
+		panel.add(button);
+		panel.add(button2);
+		frame.pack();
 		}
 	void addName() {
-		
+		String name = JOptionPane.showInputDialog("What is your name?");
+		strings.add(name);
 	}
 	void viewNames() {
-		
+		String customers = "";
+	for (int i = 0; i < strings.size(); i++) {
+		customers += "customer " + i + " " + strings.get(i) + "\n";
+	}	
+	JOptionPane.showMessageDialog(null, customers);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -38,7 +52,7 @@ public class _02_GuestBook implements ActionListener{
 		if (e.getSource() == button) {
 			addName();
 		} else if (e.getSource() == button2) {
-			
+			viewNames();
 		}
 	}
 	}
